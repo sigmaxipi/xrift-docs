@@ -16,6 +16,7 @@ const sidebars: SidebarsConfig = {
       label: 'ワールド開発',
       items: [
         'guides/create-first-world',
+        'guides/configuration',
         'world-components/components/index',
       ],
     },
@@ -32,7 +33,6 @@ const sidebars: SidebarsConfig = {
       items: [
         'cli/overview',
         'cli/commands',
-        'cli/configuration',
       ],
     },
   ],
