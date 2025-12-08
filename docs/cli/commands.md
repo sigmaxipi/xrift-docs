@@ -105,18 +105,3 @@ xrift -h
 ```bash
 xrift --verbose <command>
 ```
-
-## 開発時のコマンド
-
-開発サーバーの起動やビルドは、プロジェクトの npm スクリプトを使用します。
-
-```bash
-# 開発サーバーを起動
-npm run dev
-
-# プロダクションビルド
-npm run build
-
-# ビルド結果のプレビュー
-npm run preview
-```
