@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'XRift',
   tagline: 'Create Immersive WebXR Worlds',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   future: {
     v4: true,
@@ -65,8 +65,13 @@ const config: Config = {
       defaultMode: 'dark',
       respectPrefersColorScheme: true,
     },
+    image: 'img/ogp.png',
     navbar: {
       title: 'XRift',
+      logo: {
+        alt: 'XRift Logo',
+        src: 'img/logo.svg',
+      },
       items: [
         {
           type: 'docSidebar',
