@@ -2,88 +2,88 @@
 sidebar_position: 1
 ---
 
-# Components 一覧
+# API リファレンス
 
-xrift-world-components で提供されるコンポーネントの一覧です。
+xrift-world-components で提供されるコンポーネントとフックの一覧です。
 
-## コアコンポーネント
+## コンポーネント
 
-### XRiftCanvas
+### Interactable
 
-XRift アプリケーションのルートコンポーネント。React Three Fiber の Canvas をラップし、WebXR サポートを提供します。
-
-```tsx
-import { XRiftCanvas } from '@xrift/world-components';
-
-<XRiftCanvas>
-  {/* 3D コンテンツ */}
-</XRiftCanvas>
-```
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | - | 3D シーンの内容 |
-| `sessionInit` | `XRSessionInit` | `{}` | XR セッションの初期化オプション |
-
-## 環境コンポーネント
-
-### Environment
-
-環境マップとライティングを設定します。
+クリック/インタラクト可能なオブジェクトを作成します。
 
 ```tsx
-import { Environment } from '@xrift/world-components';
+import { Interactable } from '@xrift/world-components';
 
-<Environment preset="sunset" />
-```
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `preset` | `string` | `'sunset'` | プリセット名（sunset, dawn, night, etc.） |
-| `background` | `boolean` | `true` | 背景として表示するか |
-
-### Ground
-
-シンプルな地面を表示します。
-
-```tsx
-import { Ground } from '@xrift/world-components';
-
-<Ground size={100} />
-```
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `number` | `100` | 地面のサイズ |
-| `color` | `string` | `'#3d3d3d'` | 地面の色 |
-
-## インタラクションコンポーネント
-
-### Grabbable
-
-VR コントローラーで掴めるオブジェクトを作成します。
-
-```tsx
-import { Grabbable } from '@xrift/world-components';
-
-<Grabbable>
+<Interactable id="my-button" onInteract={() => console.log('clicked!')}>
   <mesh>
-    <boxGeometry args={[0.2, 0.2, 0.2]} />
-    <meshStandardMaterial color="red" />
+    <boxGeometry args={[1, 1, 1]} />
+    <meshStandardMaterial color="hotpink" />
   </mesh>
-</Grabbable>
+</Interactable>
 ```
 
 #### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `ReactNode` | - | 掴めるオブジェクトの内容 |
-| `onGrab` | `() => void` | - | 掴んだ時のコールバック |
-| `onRelease` | `() => void` | - | 離した時のコールバック |
+| `id` | `string` | - | 一意の識別子（必須） |
+| `onInteract` | `() => void` | - | インタラクト時のコールバック |
+| `children` | `ReactNode` | - | インタラクト対象のオブジェクト |
+
+---
+
+### Mirror
+
+リアルタイム反射面を作成します。
+
+```tsx
+import { Mirror } from '@xrift/world-components';
+
+<Mirror position={[0, 1, -5]} />
+```
+
+---
+
+### VideoScreen
+
+同期された動画再生を行うスクリーンを作成します。
+
+```tsx
+import { VideoScreen } from '@xrift/world-components';
+
+<VideoScreen src="/videos/intro.mp4" position={[0, 2, -3]} />
+```
+
+---
+
+## フック
+
+### useInstanceState
+
+ワールド内の全ユーザー間で状態を同期します。React の `useState` と同じインターフェースです。
+
+```tsx
+import { useInstanceState } from '@xrift/world-components';
+
+function Counter() {
+  const [count, setCount] = useInstanceState('counter', 0);
+
+  return (
+    <mesh onClick={() => setCount(count + 1)}>
+      {/* count は全ユーザーで同期される */}
+    </mesh>
+  );
+}
+```
+
+#### 引数
+
+| 引数 | Type | Description |
+|-----|------|-------------|
+| `key` | `string` | 状態の一意な識別子 |
+| `initialValue` | `T` | 初期値 |
+
+#### 戻り値
+
+`[value: T, setValue: (newValue: T) => void]` - useState と同じ形式

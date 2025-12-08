@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 最初のワールドを作成する
 
-このチュートリアルでは、XRift を使って簡単な WebXR ワールドを作成します。
+このチュートリアルでは、XRift を使ってワールドを作成します。
 
 ## 前提条件
 
@@ -28,36 +28,54 @@ npm run dev
 
 ブラウザで `http://localhost:5173` を開きます。
 
-## Step 3: シーンの編集
+## Step 3: プロジェクト構成
 
-`src/App.tsx` を開いて、シーンをカスタマイズしましょう。
+作成されたプロジェクトは以下のような構成になっています：
 
-### 3.1 オブジェクトの追加
+```
+my-first-world/
+├── src/
+│   ├── World.tsx        # メインのワールドコンポーネント
+│   └── components/      # カスタムコンポーネント
+├── public/              # アセット（モデル、テクスチャなど）
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
+
+## Step 4: ワールドの編集
+
+`src/World.tsx` を編集してワールドをカスタマイズします。
+
+### 4.1 オブジェクトの追加
 
 シンプルなキューブを追加します：
 
 ```tsx
-import { XRiftCanvas, Environment, Ground } from '@xrift/world-components';
-
-function App() {
+export function World() {
   return (
-    <XRiftCanvas>
-      <Environment preset="sunset" />
-      <Ground />
+    <>
+      {/* ライティング */}
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[10, 10, 5]} intensity={1} />
+
+      {/* 地面 */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+        <planeGeometry args={[20, 20]} />
+        <meshStandardMaterial color="#444" />
+      </mesh>
 
       {/* キューブを追加 */}
       <mesh position={[0, 0.5, -2]}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color="hotpink" />
       </mesh>
-    </XRiftCanvas>
+    </>
   );
 }
-
-export default App;
 ```
 
-### 3.2 アニメーションの追加
+### 4.2 アニメーションの追加
 
 キューブを回転させてみましょう：
 
@@ -69,7 +87,7 @@ import type { Mesh } from 'three';
 function RotatingCube() {
   const meshRef = useRef<Mesh>(null);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (meshRef.current) {
       meshRef.current.rotation.y += delta;
     }
@@ -84,26 +102,51 @@ function RotatingCube() {
 }
 ```
 
-### 3.3 インタラクションの追加
+### 4.3 インタラクションの追加
 
-掴めるオブジェクトを追加します：
+クリック可能なオブジェクトを追加します：
 
 ```tsx
-import { Grabbable } from '@xrift/world-components';
+import { Interactable } from '@xrift/world-components';
 
-function GrabbableCube() {
+function InteractiveButton() {
+  const handleInteract = () => {
+    console.log('ボタンがクリックされました！');
+  };
+
   return (
-    <Grabbable>
-      <mesh position={[1, 0.5, -2]}>
-        <boxGeometry args={[0.3, 0.3, 0.3]} />
+    <Interactable id="my-button" onInteract={handleInteract}>
+      <mesh position={[2, 0.5, -2]}>
+        <boxGeometry args={[0.5, 0.5, 0.5]} />
         <meshStandardMaterial color="skyblue" />
       </mesh>
-    </Grabbable>
+    </Interactable>
   );
 }
 ```
 
-## Step 4: ビルドとデプロイ
+### 4.4 状態の同期
+
+`useInstanceState` を使うと、ワールド内の全ユーザー間で状態を同期できます：
+
+```tsx
+import { useInstanceState, Interactable } from '@xrift/world-components';
+
+function SyncedCounter() {
+  const [count, setCount] = useInstanceState('counter', 0);
+
+  return (
+    <Interactable id="counter-button" onInteract={() => setCount(count + 1)}>
+      <mesh position={[0, 1, -3]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color={count % 2 === 0 ? 'green' : 'red'} />
+      </mesh>
+    </Interactable>
+  );
+}
+```
+
+## Step 5: ビルドとデプロイ
 
 プロダクションビルドを作成します：
 
@@ -111,7 +154,7 @@ function GrabbableCube() {
 npm run build
 ```
 
-XRift プラットフォームにアップロードする場合：
+XRift プラットフォームにアップロード：
 
 ```bash
 xrift upload world

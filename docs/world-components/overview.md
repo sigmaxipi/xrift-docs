@@ -1,16 +1,15 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # World Components 概要
 
-xrift-world-components は、WebXR ワールドを構築するための React コンポーネントライブラリです。
+xrift-world-components は、XRift ワールドを構築するための React コンポーネント・フックライブラリです。
 
 ## 特徴
 
 - React Three Fiber ベース
-- WebXR 対応（VR/AR）
-- 宣言的な 3D シーン構築
+- マルチユーザー状態同期
 - TypeScript 完全サポート
 
 ## インストール
@@ -19,38 +18,51 @@ xrift-world-components は、WebXR ワールドを構築するための React �
 npm install @xrift/world-components
 ```
 
+### ピア依存関係
+
+以下のパッケージも必要です：
+
+```bash
+npm install react three @react-three/fiber @react-three/drei
+```
+
 ## 基本的な使い方
 
 ```tsx
-import { XRiftCanvas, Environment, Ground } from '@xrift/world-components';
+import { Interactable, useInstanceState } from '@xrift/world-components';
 
-function App() {
+export function World() {
+  const [count, setCount] = useInstanceState('counter', 0);
+
   return (
-    <XRiftCanvas>
-      <Environment preset="sunset" />
-      <Ground />
-    </XRiftCanvas>
+    <>
+      <ambientLight />
+      <Interactable id="button" onInteract={() => setCount(count + 1)}>
+        <mesh>
+          <boxGeometry />
+          <meshStandardMaterial color={count % 2 === 0 ? 'hotpink' : 'skyblue'} />
+        </mesh>
+      </Interactable>
+    </>
   );
 }
 ```
 
-## コンポーネントカテゴリ
+## 提供されるもの
 
-### コアコンポーネント
+### コンポーネント
 
-- `XRiftCanvas` - XRift アプリケーションのルートコンポーネント
-- `XRController` - VR コントローラー
+| コンポーネント | 説明 |
+|--------------|------|
+| `Interactable` | クリック可能なオブジェクトを作成 |
+| `Mirror` | リアルタイム反射面 |
+| `VideoScreen` | 同期された動画再生 |
 
-### 環境コンポーネント
+### フック
 
-- `Environment` - 環境マップとライティング
-- `Sky` - スカイボックス
-- `Ground` - 地面
-
-### インタラクションコンポーネント
-
-- `Grabbable` - 掴めるオブジェクト
-- `Teleport` - テレポート移動
+| フック | 説明 |
+|-------|------|
+| `useInstanceState()` | ユーザー間で状態を同期 |
 
 詳細は [Components](/world-components/components/) を参照してください。
 
