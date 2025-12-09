@@ -80,7 +80,7 @@ const config: Config = {
         },
         {
           href: 'https://xrift.net/',
-          label: 'XRift',
+          label: 'ログイン',
           position: 'right',
         },
         {
