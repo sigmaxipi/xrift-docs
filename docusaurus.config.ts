@@ -84,6 +84,11 @@ const config: Config = {
           position: 'right',
         },
         {
+          href: 'https://t.co/nxJu1FxGz3',
+          label: 'Discord',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/WebXR-JP',
           label: 'GitHub',
           position: 'right',
@@ -129,6 +134,10 @@ const config: Config = {
             {
               label: 'ログイン',
               href: 'https://xrift.net/',
+            },
+            {
+              label: 'Discord',
+              href: 'https://t.co/nxJu1FxGz3',
             },
             {
               label: 'GitHub',
