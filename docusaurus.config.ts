@@ -127,6 +127,10 @@ const config: Config = {
           title: 'More',
           items: [
             {
+              label: 'ログイン',
+              href: 'https://xrift.net/',
+            },
+            {
               label: 'GitHub',
               href: 'https://github.com/WebXR-JP',
             },
