@@ -79,6 +79,11 @@ const config: Config = {
           label: 'Docs',
         },
         {
+          href: 'https://xrift.net/',
+          label: 'XRift',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/WebXR-JP',
           label: 'GitHub',
           position: 'right',
