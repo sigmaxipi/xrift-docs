@@ -122,6 +122,13 @@ public/
     └── sky.jpg
 ```
 
+`public/` に配置したファイルは、相対パスでアクセスできます：
+
+```tsx
+// public/models/my-model.glb を読み込む
+<primitive object={useGLTF('/models/my-model.glb').scene} />
+```
+
 ## Step 6: ビルドとデプロイ
 
 プロダクションビルドを作成：
