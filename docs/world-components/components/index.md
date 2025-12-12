@@ -57,6 +57,27 @@ import { VideoScreen } from '@xrift/world-components';
 
 ---
 
+### ScreenShareDisplay
+
+画面共有の映像を3D空間内にスクリーンとして表示します。`ScreenShareContext` から映像と状態を取得します。
+
+```tsx
+import { ScreenShareDisplay } from '@xrift/world-components';
+
+<ScreenShareDisplay id="screen-1" position={[0, 2, -5]} />
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `id` | `string` | - | スクリーンの一意なID（必須） |
+| `position` | `[number, number, number]` | `[0, 2, -5]` | スクリーンの位置 |
+| `rotation` | `[number, number, number]` | `[0, 0, 0]` | スクリーンの回転 |
+| `scale` | `[number, number]` | `[4, 4 * (9/16)]` | スクリーンのサイズ [幅, 高さ] |
+
+---
+
 ## フック
 
 ### useInstanceState
@@ -87,3 +108,32 @@ function Counter() {
 #### 戻り値
 
 `[value: T, setValue: (newValue: T) => void]` - useState と同じ形式
+
+---
+
+### useScreenShareContext
+
+画面共有の状態を取得するフックです。
+
+```tsx
+import { useScreenShareContext } from '@xrift/world-components';
+
+function MyComponent() {
+  const { videoElement, isSharing, startScreenShare, stopScreenShare } = useScreenShareContext();
+
+  return (
+    <button onClick={isSharing ? stopScreenShare : startScreenShare}>
+      {isSharing ? '共有を停止' : '共有を開始'}
+    </button>
+  );
+}
+```
+
+#### 戻り値
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `videoElement` | `HTMLVideoElement \| null` | 表示する映像のvideo要素 |
+| `isSharing` | `boolean` | 自分が共有中かどうか |
+| `startScreenShare` | `() => void` | 共有開始 |
+| `stopScreenShare` | `() => void` | 共有停止 |
