@@ -201,3 +201,50 @@ function MyPlatform() {
 :::note[使用先]
 このフックは xrift-frontend（プラットフォーム）側での使用を想定しています。ワールド開発者は `SpawnPoint` コンポーネントを使用してください。
 :::
+
+---
+
+### useUsers
+
+ワールドに参加しているユーザー情報を取得するフックです。自分自身（ローカルユーザー）と他の参加者（リモートユーザー）の情報にアクセスできます。
+
+```tsx
+import { useUsers } from '@xrift/world-components';
+
+function ParticipantCount() {
+  const { localUser, remoteUsers } = useUsers();
+
+  const totalCount = (localUser ? 1 : 0) + remoteUsers.length;
+
+  return (
+    <div>
+      <p>参加者数: {totalCount}人</p>
+    </div>
+  );
+}
+```
+
+#### 戻り値
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `localUser` | `User \| null` | 自分自身のユーザー情報 |
+| `remoteUsers` | `User[]` | 他の参加者のユーザー情報の配列 |
+
+#### User 型
+
+```typescript
+interface User {
+  id: string;              // ユーザーID
+  displayName: string;     // 表示名
+  avatarUrl: string | null; // アバターアイコンURL
+  isGuest: boolean;        // ゲストかどうか
+}
+```
+
+#### ユースケース
+
+- **参加者数の表示**: ワールド内の参加人数をリアルタイムで表示
+- **参加者リストの表示**: 参加者一覧UIを作成
+- **ユーザーに応じた演出**: ユーザー数に応じてワールドの演出を変更
+- **ゲストと認証ユーザーの区別**: `isGuest` を使って権限や表示を分ける
