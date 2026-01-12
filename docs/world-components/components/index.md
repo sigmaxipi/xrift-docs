@@ -230,15 +230,14 @@ function ParticipantCount() {
 |----------|------|-------------|
 | `localUser` | `User \| null` | 自分自身のユーザー情報 |
 | `remoteUsers` | `User[]` | 他の参加者のユーザー情報の配列 |
-| `getMovement` | `(socketId: string) => PlayerMovement \| undefined` | 指定ユーザーの位置情報を取得 |
+| `getMovement` | `(id: string) => PlayerMovement \| undefined` | 指定ユーザーの位置情報を取得 |
 | `getLocalMovement` | `() => PlayerMovement` | 自分の位置情報を取得 |
 
 #### User 型
 
 ```typescript
 interface User {
-  id: string;              // 認証ユーザーID
-  socketId: string;        // ソケット接続ID
+  id: string;              // ユーザーID
   displayName: string;     // 表示名
   avatarUrl: string | null; // アバターアイコンURL
   isGuest: boolean;        // ゲストかどうか
@@ -310,7 +309,7 @@ function UserHUD({ user, getMovement }) {
   const groupRef = useRef<Group>(null);
 
   useFrame(() => {
-    const movement = getMovement(user.socketId);
+    const movement = getMovement(user.id);
     if (!movement || !groupRef.current) return;
 
     // ユーザーの頭の上に配置
@@ -334,7 +333,7 @@ function UserHUDs() {
   return (
     <>
       {remoteUsers.map(user => (
-        <UserHUD key={user.socketId} user={user} getMovement={getMovement} />
+        <UserHUD key={user.id} user={user} getMovement={getMovement} />
       ))}
     </>
   );
@@ -357,7 +356,7 @@ function ProximityDetector() {
     const nearby: string[] = [];
 
     remoteUsers.forEach(user => {
-      const movement = getMovement(user.socketId);
+      const movement = getMovement(user.id);
       if (!movement) return;
 
       const distance = Math.sqrt(
@@ -394,7 +393,7 @@ function DistanceLine({ targetUser, getMovement, getLocalMovement }) {
 
   useFrame(() => {
     const myPos = getLocalMovement().position;
-    const targetMovement = getMovement(targetUser.socketId);
+    const targetMovement = getMovement(targetUser.id);
     if (!targetMovement || !lineRef.current) return;
 
     lineRef.current.geometry.setPositions([
