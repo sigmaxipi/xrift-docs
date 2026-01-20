@@ -255,6 +255,100 @@ import { TextInput } from '@xrift/world-components';
 
 ---
 
+### TagBoard
+
+ユーザーが選択したタグをローカル/グローバルに扱い、ボードUI（TagSelector）と各ユーザー頭上へのタグ表示（TagDisplay）を提供するコンポーネントです。
+
+```tsx
+import { TagBoard } from '@xrift/world-components';
+
+<TagBoard
+  instanceStateKey="main-tag-board"
+  position={[0, 1.5, -3]}
+/>
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `tags` | `Tag[]` | デフォルトタグ一覧 | 表示・選択対象のタグ |
+| `columns` | `number` | `3` | 表示列数 |
+| `title` | `string` | `"タグ選択"` | タイトル文言 |
+| `instanceStateKey` | `string` | - | インスタンス状態のキー（必須、複数ボード設置時の識別用） |
+| `position` | `[number, number, number]` | `[0, 0, 0]` | ボードの位置 |
+| `rotation` | `[number, number, number]` | `[0, 0, 0]` | ボードの回転 |
+| `scale` | `number` | `1` | 全体スケール |
+
+#### Tag 型定義
+
+```typescript
+interface Tag {
+  id: string;      // タグの一意識別子
+  label: string;   // 表示ラベル
+  color: string;   // 色（HEX形式）
+}
+```
+
+#### デフォルトタグ一覧
+
+`tags` プロパティを省略した場合、以下のタグが使用されます：
+
+```typescript
+[
+  { color: "#2ECC71", id: "want-talk", label: "話したい" },
+  { color: "#3498DB", id: "want-listen", label: "聞きたい" },
+  { color: "#95A5A6", id: "silent", label: "無言" },
+  { color: "#1ABC9C", id: "developer", label: "開発者" },
+  { color: "#2980B9", id: "student", label: "学生" },
+  { color: "#F1C40F", id: "beginner", label: "初心者" },
+  { color: "#9B59B6", id: "dont-know", label: "なんもわからん" },
+  { color: "#8BC34A", id: "working", label: "作業中" },
+  { color: "#BF7B41", id: "away", label: "離席中" },
+  { color: "#FF9800", id: "cat", label: "ねこ" },
+]
+```
+
+#### 使用例
+
+##### カスタムタグを使用
+
+```tsx
+import { TagBoard, type Tag } from '@xrift/world-components';
+
+const customTags: Tag[] = [
+  { id: "frontend", label: "フロントエンド", color: "#61DAFB" },
+  { id: "backend", label: "バックエンド", color: "#68A063" },
+  { id: "design", label: "デザイン", color: "#FF6B6B" },
+  { id: "pm", label: "PM", color: "#9B59B6" },
+];
+
+export const MyWorld = () => {
+  return (
+    <TagBoard
+      tags={customTags}
+      columns={2}
+      title="あなたの役割は？"
+      instanceStateKey="role-tag-board"
+      position={[0, 1.5, -3]}
+      rotation={[0, 0, 0]}
+      scale={1.2}
+    />
+  );
+};
+```
+
+:::tip[複数のTagBoardを設置する場合]
+`instanceStateKey` は同一ワールド内で一意である必要があります。複数の TagBoard を設置する場合は、それぞれ異なる `instanceStateKey` を指定してください。
+:::
+
+:::note[依存関係]
+- `UsersContext` が必要です（ユーザー情報の取得に使用）
+- 内部で `useInstanceState` フックを使用しています（タグ選択状態の同期）
+:::
+
+---
+
 ## フック
 
 ### useInstanceState
