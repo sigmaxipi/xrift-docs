@@ -156,7 +156,7 @@ import { ScreenShareDisplay } from '@xrift/world-components';
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `id` | `string` | - | スクリーンの一意なID（必須） |
-| `position` | `[number, number, number]` | `[0, 2, -5]` | スクリーンの位置 |
+| `position` | `[number, number, number]` | `[0, 0, 0]` | スクリーンの位置 |
 | `rotation` | `[number, number, number]` | `[0, 0, 0]` | スクリーンの回転 |
 | `width` | `number` | `4` | スクリーンの幅（高さは16:9で自動計算） |
 
