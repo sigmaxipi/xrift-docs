@@ -2,46 +2,46 @@
 sidebar_position: 1
 ---
 
-# CLI 概要
+# CLI Overview
 
-xrift-cli は、XRift ワールドプロジェクトを管理するためのコマンドラインツールです。
+xrift-cli is a command-line tool for managing XRift world projects.
 
-## 機能
+## Features
 
-- 新しいワールドプロジェクトの作成
-- XRift プラットフォームへのワールドのアップロード
-- ユーザー認証の管理
+- Creation of new world projects
+- Uploading worlds to the XRift platform
+- User authentication management
 
-## インストール
+## Installation
 
 ```bash
 npm install -g @xrift/cli
 ```
 
-## 基本的な使い方
+## Basic Usage
 
 ```bash
-# ヘルプを表示
+# Show help
 xrift --help
 
-# バージョンを表示
+# Show version
 xrift --version
 
-# ログイン（ブラウザ認証）
+# Login (browser authentication)
 xrift login
 
-# 現在のユーザーを確認
+# Check current user
 xrift whoami
 
-# 新しいプロジェクトを作成
+# Create a new project
 xrift create <project-name>
 
-# ワールドをアップロード
+# Upload world
 xrift upload world
 ```
 
-詳細は [コマンドリファレンス](/cli/commands) を参照してください。
+For details, refer to the [Command Reference](/cli/commands).
 
-## リポジトリ
+## Repository
 
 - [GitHub: xrift-cli](https://github.com/WebXR-JP/xrift-cli)

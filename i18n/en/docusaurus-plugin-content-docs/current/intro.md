@@ -3,57 +3,57 @@ sidebar_position: 1
 slug: /
 ---
 
-# XRift とは
+# What is XRift?
 
-XRift は、WebXR を使った没入型 3D ワールドを簡単に構築するためのプラットフォームです。
+XRift is a platform for easily building immersive 3D worlds using WebXR.
 
-## 開発できるもの
+## What You Can Develop
 
-### ワールド
+### Worlds
 
-XRift では、独自の 3D ワールドを作成できます。React Three Fiber をベースにしたコンポーネントライブラリを使って、VR/AR 対応のインタラクティブな空間を構築できます。
+With XRift, you can create your own unique 3D worlds. Using a component library based on React Three Fiber, you can build interactive spaces compatible with VR/AR.
 
-- [ワールド開発を始める](/getting-started/installation)
+- [Start World Development](/getting-started/installation)
 - [World Components](/world-components/components/)
 
-### アイテム
+### Items
 
 :::note Coming Soon
-アイテム開発機能は現在準備中です。
+Item development features are currently under preparation.
 :::
 
-ワールド内で使用できるインタラクティブなオブジェクトを作成できます。
+You can create interactive objects that can be used within worlds.
 
-- [アイテム開発について](/item/overview)
+- [About Item Development](/item/overview)
 
-## ツール
+## Tools
 
 ### xrift-cli
 
-コマンドラインツール。プロジェクトの作成、XRift プラットフォームへのアップロードなどを行います。
+A command-line tool. It handles project creation, uploading to the XRift platform, and more.
 
-- [CLI ドキュメント](/cli/overview)
+- [CLI Documentation](/cli/overview)
 - [GitHub](https://github.com/WebXR-JP/xrift-cli)
 
 ### xrift-world-components
 
-WebXR ワールドを構築するための React コンポーネントライブラリ。
+A React component library for building WebXR worlds.
 
-- [コンポーネント一覧](/world-components/components/)
+- [Component List](/world-components/components/)
 - [GitHub](https://github.com/WebXR-JP/xrift-world-components)
 
-## クイックスタート
+## Quick Start
 
 ```bash
-# XRift CLI をインストール
+# Install XRift CLI
 npm install -g @xrift/cli
 
-# 新しいワールドを作成
+# Create a new world
 xrift create my-world
 
-# プロジェクトに移動して開発サーバーを起動
+# Navigate to the project and start the development server
 cd my-world
 npm run dev
 ```
 
-詳細は [Getting Started](/getting-started/installation) を参照してください。
+For details, please refer to [Getting Started](/getting-started/installation).

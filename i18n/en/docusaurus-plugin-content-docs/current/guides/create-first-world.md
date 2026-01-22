@@ -2,81 +2,81 @@
 sidebar_position: 1
 ---
 
-# 最初のワールドを作成する
+# Create Your First World
 
-このチュートリアルでは、XRift CLI を使ってワールドプロジェクトを作成し、カスタマイズする方法を説明します。
+In this tutorial, we will explain how to create a world project using the XRift CLI and how to customize it.
 
-## 前提条件
+## Prerequisites
 
-- Node.js 18.0.0 以上
-- XRift CLI がインストール済み
+- Node.js 18.0.0 or higher
+- XRift CLI installed
 
-## Step 1: プロジェクトの作成
+## Step 1: Create a Project
 
-新しいワールドプロジェクトを作成します：
+Create a new world project:
 
 ```bash
 xrift create my-first-world
 cd my-first-world
 ```
 
-対話形式でプロジェクト名などを設定できます。`-y` オプションでスキップも可能です。
+You can set the project name and other details interactively. You can also skip this with the `-y` option.
 
-## Step 2: 開発サーバーの起動
+## Step 2: Start the Development Server
 
 ```bash
 npm run dev
 ```
 
-ブラウザで `http://localhost:5173` を開くと、サンプルワールドが表示されます。
+Open `http://localhost:5173` in your browser, and the sample world will be displayed.
 
-## Step 3: テンプレートの内容を確認
+## Step 3: Check the Template Content
 
-作成されたプロジェクトには、すでに動作するサンプルワールドが含まれています：
+The created project already contains a working sample world:
 
 ```
 my-first-world/
 ├── src/
-│   ├── World.tsx          # メインのワールドコンポーネント
-│   └── components/        # サンプルコンポーネント
-├── public/                # アセット（モデル、テクスチャ、スカイボックスなど）
+│   ├── World.tsx          # Main world component
+│   └── components/        # Sample components
+├── public/                # Assets (models, textures, skyboxes, etc.)
 ├── package.json
 └── vite.config.ts
 ```
 
-### テンプレートに含まれるもの
+### What's Included in the Template
 
-- **地面と壁** - 物理演算が有効な床と境界
-- **スカイボックス** - 360度パノラマ背景
-- **ライティング** - 環境光とシャドウ付き指向性ライト
-- **インタラクティブボタン** - クリック可能なオブジェクトのサンプル
-- **3Dモデル（Duck）** - 物理演算付きのサンプルモデル
-- **回転オブジェクト** - アニメーションのサンプル
-- **Mirror** - 反射面のサンプル
-- **VideoScreen** - 動画再生のサンプル
+- **Ground and Walls** - Floors and boundaries with physics enabled
+- **Skybox** - 360-degree panoramic background
+- **Lighting** - Ambient light and directional light with shadows
+- **Interactive Button** - Sample of a clickable object
+- **3D Model (Duck)** - Sample model with physics
+- **Rotating Object** - Sample of animation
+- **Mirror** - Sample of a reflective surface
+- **VideoScreen** - Sample of video playback
 
-## Step 4: ワールドをカスタマイズ
+## Step 4: Customize the World
 
-`src/World.tsx` を編集してワールドをカスタマイズします。
+Edit `src/World.tsx` to customize the world.
 
-### オブジェクトを追加する
+### Add Objects
 
 ```tsx
-{/* 新しいキューブを追加 */}
+{/* Add a new cube */}
 <mesh position={[3, 0.5, 0]}>
   <boxGeometry args={[1, 1, 1]} />
   <meshStandardMaterial color="orange" />
 </mesh>
 ```
 
-### インタラクションを追加する
+### Add Interactions
 
-`Interactable` コンポーネントでクリック可能なオブジェクトを作成できます：
+You can create clickable objects using the `Interactable` component:
 
 ```tsx
 import { Interactable } from '@xrift/world-components';
 
-<Interactable id="my-button" onInteract={() => console.log('クリック！')}>
+<Interactable id="my-button" onInteract={() => console.log('Click!')}>
   <mesh position={[0, 1, -2]}>
     <sphereGeometry args={[0.5]} />
     <meshStandardMaterial color="hotpink" />
@@ -84,9 +84,9 @@ import { Interactable } from '@xrift/world-components';
 </Interactable>
 ```
 
-### 状態を同期する
+### Synchronize State
 
-`useInstanceState` を使うと、全ユーザー間で状態を同期できます：
+Using `useInstanceState`, you can synchronize state across all users:
 
 ```tsx
 import { useInstanceState, Interactable } from '@xrift/world-components';
@@ -108,14 +108,14 @@ function SyncedLight() {
 }
 ```
 
-### 衝突判定を追加する
+### Add Collision Detection
 
-XRift は物理演算に [@react-three/rapier](https://github.com/pmndrs/react-three-rapier) を使用しています。`RigidBody` でオブジェクトに衝突判定を追加できます：
+XRift uses [@react-three/rapier](https://github.com/pmndrs/react-three-rapier) for physics. You can add collision detection to objects using `RigidBody`:
 
 ```tsx
 import { RigidBody } from '@react-three/rapier';
 
-{/* プレイヤーが通れない壁 */}
+{/* Wall that players cannot pass through */}
 <RigidBody type="fixed">
   <mesh position={[0, 1, -5]}>
     <boxGeometry args={[10, 2, 0.5]} />
@@ -123,7 +123,7 @@ import { RigidBody } from '@react-three/rapier';
   </mesh>
 </RigidBody>
 
-{/* 落下するオブジェクト */}
+{/* Falling object */}
 <RigidBody type="dynamic">
   <mesh position={[0, 5, 0]}>
     <sphereGeometry args={[0.5]} />
@@ -132,16 +132,16 @@ import { RigidBody } from '@react-three/rapier';
 </RigidBody>
 ```
 
-#### RigidBody の type
+#### RigidBody Types
 
-| Type | 説明 |
+| Type | Description |
 |------|------|
-| `fixed` | 動かない静的オブジェクト（壁、床など） |
-| `dynamic` | 重力や衝突の影響を受けるオブジェクト |
-| `kinematicPosition` | コードで位置を制御するオブジェクト |
+| `fixed` | Static objects that do not move (walls, floors, etc.) |
+| `dynamic` | Objects affected by gravity and collisions |
+| `kinematicPosition` | Objects whose position is controlled by code |
 
 :::tip
-見えない壁を作りたい場合は、`<mesh>` を省略して `<CuboidCollider>` だけを配置できます：
+If you want to create an invisible wall, you can omit `<mesh>` and place only `<CuboidCollider>`:
 
 ```tsx
 import { RigidBody, CuboidCollider } from '@react-three/rapier';
@@ -152,9 +152,9 @@ import { RigidBody, CuboidCollider } from '@react-three/rapier';
 ```
 :::
 
-## Step 5: アセットを追加する
+## Step 5: Add Assets
 
-3Dモデルやテクスチャは `public/` ディレクトリに配置します：
+Place 3D models and textures in the `public/` directory:
 
 ```
 public/
@@ -166,7 +166,7 @@ public/
     └── sky.jpg
 ```
 
-`public/` に配置したファイルは、`useXRift` から取得した `baseUrl` を使ってアクセスします：
+Files placed in `public/` are accessed using `baseUrl` obtained from `useXRift`:
 
 ```tsx
 import { useXRift } from '@xrift/world-components';
@@ -179,21 +179,21 @@ function MyModel() {
 }
 ```
 
-## Step 6: ビルドとデプロイ
+## Step 6: Build and Deploy
 
-プロダクションビルドを作成：
+Create a production build:
 
 ```bash
 npm run build
 ```
 
-XRift プラットフォームにアップロード：
+Upload to the XRift platform:
 
 ```bash
 xrift upload world
 ```
 
-## 次のステップ
+## Next Steps
 
-- [World Components](/world-components/components/) でコンポーネントの詳細を確認
-- [CLI コマンド](/cli/commands) で利用可能なコマンドを確認
+- Check component details in [World Components](/world-components/components/)
+- Check available commands in [CLI Commands](/cli/commands)

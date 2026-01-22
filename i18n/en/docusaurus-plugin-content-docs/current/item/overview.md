@@ -2,23 +2,23 @@
 sidebar_position: 1
 ---
 
-# アイテム開発
+# Item Development
 
-XRift アイテムの開発に関するドキュメントです。
+Documentation regarding XRift item development.
 
 :::note Coming Soon
 
-アイテム開発機能は現在準備中です。詳細なドキュメントは近日公開予定です。
+Item development features are currently under preparation. Detailed documentation will be released soon.
 
 :::
 
-## 概要
+## Overview
 
-XRift アイテムは、ワールド内で使用できるインタラクティブなオブジェクトです。ユーザーが作成したアイテムは、他のワールドでも使用することができます。
+XRift items are interactive objects that can be used within worlds. Items created by users can be used in other worlds as well.
 
-## 予定されている機能
+## Planned Features
 
-- アイテムの作成と公開
-- アイテムのインポートとエクスポート
-- アイテムのカスタマイズ
-- アイテムマーケットプレイス
+- Creation and publication of items
+- Import and export of items
+- Customization of items
+- Item marketplace

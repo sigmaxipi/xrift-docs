@@ -2,15 +2,15 @@
 sidebar_position: 1
 ---
 
-# API リファレンス
+# API Reference
 
-xrift-world-components で提供されるコンポーネントとフックの一覧です。
+A list of components and hooks provided by xrift-world-components.
 
-## コンポーネント
+## Components
 
 ### Interactable
 
-クリック/インタラクト可能なオブジェクトを作成します。
+Creates an object that can be clicked/interacted with.
 
 ```tsx
 import { Interactable } from '@xrift/world-components';
@@ -27,15 +27,15 @@ import { Interactable } from '@xrift/world-components';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `id` | `string` | - | 一意の識別子（必須） |
-| `onInteract` | `() => void` | - | インタラクト時のコールバック |
-| `children` | `ReactNode` | - | インタラクト対象のオブジェクト |
+| `id` | `string` | - | Unique identifier (Required) |
+| `onInteract` | `() => void` | - | Callback on interaction |
+| `children` | `ReactNode` | - | Object to be interacted with |
 
 ---
 
 ### Mirror
 
-リアルタイム反射面を作成します。
+Creates a real-time reflective surface.
 
 ```tsx
 import { Mirror } from '@xrift/world-components';
@@ -47,7 +47,7 @@ import { Mirror } from '@xrift/world-components';
 
 ### VideoScreen
 
-同期された動画再生を行うスクリーンを作成します。
+Creates a screen that plays synchronized video.
 
 ```tsx
 import { VideoScreen } from '@xrift/world-components';
@@ -59,7 +59,7 @@ import { VideoScreen } from '@xrift/world-components';
 
 ### VideoPlayer
 
-`VideoScreen` をベースにしたUIコントロール付きのビデオプレイヤーです。再生/停止ボタン、プログレスバー、音量バーなどVR対応のコントロールUIを備えています。
+A video player with UI controls based on `VideoScreen`. It features VR-compatible control UIs such as play/pause buttons, progress bar, and volume bar.
 
 ```tsx
 import { VideoPlayer } from '@xrift/world-components';
@@ -76,34 +76,34 @@ import { VideoPlayer } from '@xrift/world-components';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `id` | `string` | - | スクリーンの一意なID（必須） |
-| `position` | `[number, number, number]` | `[0, 2, -5]` | スクリーンの位置 |
-| `rotation` | `[number, number, number]` | `[0, 0, 0]` | スクリーンの回転 |
-| `width` | `number` | `4` | スクリーンの幅（高さは16:9で自動計算） |
-| `url` | `string` | - | 動画のURL |
-| `playing` | `boolean` | `true` | 初期再生状態 |
-| `volume` | `number` | `1` | 初期音量（0〜1） |
-| `sync` | `'global' \| 'local'` | `'global'` | 同期モード |
+| `id` | `string` | - | Unique ID for the screen (Required) |
+| `position` | `[number, number, number]` | `[0, 2, -5]` | Position of the screen |
+| `rotation` | `[number, number, number]` | `[0, 0, 0]` | Rotation of the screen |
+| `width` | `number` | `4` | Width of the screen (Height is automatically calculated at 16:9) |
+| `url` | `string` | - | URL of the video |
+| `playing` | `boolean` | `true` | Initial playback state |
+| `volume` | `number` | `1` | Initial volume (0-1) |
+| `sync` | `'global' \| 'local'` | `'global'` | Sync mode |
 
-#### 機能
+#### Features
 
-- **URL入力ボタン**: 🔗 アイコンをクリックするとURL入力オーバーレイが表示され、動画ソースを動的に切り替え可能
-- **再生/停止ボタン**: ▶/|| アイコンで再生状態を切り替え
-- **プログレスバー**: 20セグメントに分割された進捗バー。クリックで動画の最初に戻る
-- **音量バー**: 0-100%を10刻みで調整。🔈/🔇アイコンでミュート状態を表示
-- **VR対応**: `Interactable` を使用したVRコントローラー操作に対応
+- **URL Input Button**: Clicking the 🔗 icon displays a URL input overlay, allowing dynamic switching of the video source.
+- **Play/Pause Button**: Toggle playback state with the ▶/|| icon.
+- **Progress Bar**: A progress bar divided into 20 segments. Click to return to the beginning of the video.
+- **Volume Bar**: Adjusts from 0-100% in increments of 10. Displays mute status with 🔈/🔇 icons.
+- **VR Support**: Supports VR controller operation using `Interactable`.
 
-:::tip[同期モード]
-`sync` プロパティで同期モードを選択できます：
-- `'global'`: 全ユーザー間で再生状態を同期（デフォルト）
-- `'local'`: 各ユーザーが独立して再生を制御
+:::tip[Sync Mode]
+You can select the sync mode with the `sync` property:
+- `'global'`: Synchronize playback state across all users (Default)
+- `'local'`: Each user controls playback independently
 :::
 
 ---
 
 ### LiveVideoPlayer
 
-HLS/DASH などのライブストリーミング再生に対応したビデオプレイヤーです。`VideoPlayer` と同様のUIコントロールを備えつつ、ライブ配信向けに最適化されています。
+A video player that supports live streaming playback such as HLS/DASH. While having similar UI controls to `VideoPlayer`, it is optimized for live streaming.
 
 ```tsx
 import { LiveVideoPlayer } from '@xrift/world-components';
@@ -120,30 +120,30 @@ import { LiveVideoPlayer } from '@xrift/world-components';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `id` | `string` | - | スクリーンの一意なID（必須） |
-| `position` | `[number, number, number]` | `[0, 2, -5]` | スクリーンの位置 |
-| `rotation` | `[number, number, number]` | `[0, 0, 0]` | スクリーンの回転 |
-| `width` | `number` | `4` | スクリーンの幅（高さは16:9で自動計算） |
-| `url` | `string` | - | ストリームのURL（HLS/DASH対応） |
-| `playing` | `boolean` | `true` | 初期再生状態 |
-| `volume` | `number` | `1` | 初期音量（0〜1） |
+| `id` | `string` | - | Unique ID for the screen (Required) |
+| `position` | `[number, number, number]` | `[0, 2, -5]` | Position of the screen |
+| `rotation` | `[number, number, number]` | `[0, 0, 0]` | Rotation of the screen |
+| `width` | `number` | `4` | Width of the screen (Height is automatically calculated at 16:9) |
+| `url` | `string` | - | Stream URL (HLS/DASH supported) |
+| `playing` | `boolean` | `true` | Initial playback state |
+| `volume` | `number` | `1` | Initial volume (0-1) |
 
-#### 機能
+#### Features
 
-- **URL入力ボタン**: 🔗 アイコンをクリックするとURL入力オーバーレイが表示され、ストリームソースを動的に切り替え可能
-- **再生/停止ボタン**: ▶/|| アイコンで再生状態を切り替え
-- **音量バー**: 0-100%を10刻みで調整。🔈/🔇アイコンでミュート状態を表示
-- **VR対応**: `Interactable` を使用したVRコントローラー操作に対応
+- **URL Input Button**: Clicking the 🔗 icon displays a URL input overlay, allowing dynamic switching of the stream source.
+- **Play/Pause Button**: Toggle playback state with the ▶/|| icon.
+- **Volume Bar**: Adjusts from 0-100% in increments of 10. Displays mute status with 🔈/🔇 icons.
+- **VR Support**: Supports VR controller operation using `Interactable`.
 
-:::note[VideoPlayer との違い]
-`LiveVideoPlayer` はライブストリーミング向けに設計されているため、プログレスバー（シーク機能）がありません。録画済み動画の再生には `VideoPlayer` を使用してください。
+:::note[Difference from VideoPlayer]
+Since `LiveVideoPlayer` is designed for live streaming, it does not have a progress bar (seek function). Please use `VideoPlayer` for playing recorded videos.
 :::
 
 ---
 
 ### ScreenShareDisplay
 
-画面共有の映像を3D空間内にスクリーンとして表示します。`ScreenShareContext` から映像と状態を取得します。
+Displays the screen sharing video as a screen in the 3D space. It retrieves video and status from `ScreenShareContext`.
 
 ```tsx
 import { ScreenShareDisplay } from '@xrift/world-components';
@@ -155,24 +155,24 @@ import { ScreenShareDisplay } from '@xrift/world-components';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `id` | `string` | - | スクリーンの一意なID（必須） |
-| `position` | `[number, number, number]` | `[0, 0, 0]` | スクリーンの位置 |
-| `rotation` | `[number, number, number]` | `[0, 0, 0]` | スクリーンの回転 |
-| `width` | `number` | `4` | スクリーンの幅（高さは16:9で自動計算） |
+| `id` | `string` | - | Unique ID for the screen (Required) |
+| `position` | `[number, number, number]` | `[0, 0, 0]` | Position of the screen |
+| `rotation` | `[number, number, number]` | `[0, 0, 0]` | Rotation of the screen |
+| `width` | `number` | `4` | Width of the screen (Height is automatically calculated at 16:9) |
 
-:::tip[アスペクト比の維持]
-映像のアスペクト比は自動的に維持されます。16:9以外の映像でも黒帯が入り正しく表示されます。
+:::tip[Maintaining Aspect Ratio]
+The aspect ratio of the video is automatically maintained. Video other than 16:9 will be displayed correctly with black bars.
 :::
 
-:::note[制限事項]
-共有できる画面はワールドにつき1つまでです。`ScreenShareDisplay` を複数配置することは可能ですが、すべて同じ画面が表示されます。
+:::note[Limitations]
+Only one screen can be shared per world. While it is possible to place multiple `ScreenShareDisplay` components, they will all display the same screen.
 :::
 
 ---
 
 ### SpawnPoint
 
-ワールド内でプレイヤーが出現する地点を指定します。
+Specifies the point where players spawn in the world.
 
 ```tsx
 import { SpawnPoint } from '@xrift/world-components';
@@ -185,24 +185,24 @@ import { SpawnPoint } from '@xrift/world-components';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `position` | `[number, number, number]` | `[0, 0, 0]` | スポーン位置 |
-| `yaw` | `number` | `0` | スポーン時の向き（度数法 0-360） |
+| `position` | `[number, number, number]` | `[0, 0, 0]` | Spawn position |
+| `yaw` | `number` | `0` | Orientation at spawn (degrees 0-360) |
 
-:::tip[開発時ヘルパー]
-開発環境では、半透明の円柱（下から上にかけて透明度が増すグラデーション）と矢印でスポーン位置と方向を視覚化します。本番ビルドではヘルパーは表示されません。
+:::tip[Development Helper]
+In the development environment, the spawn position and direction are visualized with a semi-transparent cylinder (gradient transparency from bottom to top) and an arrow. The helper is not displayed in the production build.
 
-![SpawnPoint ヘルパー](/img/spawnpoint-helper.png)
+![SpawnPoint Helper](/img/spawnpoint-helper.png)
 :::
 
-:::note[複数のSpawnPoint]
-複数の `SpawnPoint` を配置した場合、最後に設定されたものが有効になります。
+:::note[Multiple SpawnPoints]
+If multiple `SpawnPoint` components are placed, the one set last takes effect.
 :::
 
 ---
 
 ### TextInput
 
-3D空間内でテキスト入力を可能にするコンポーネントです。children方式で外観を自由にカスタマイズできます。
+A component that enables text input in 3D space. You can customize the appearance freely using the children method.
 
 ```tsx
 import { TextInput } from '@xrift/world-components';
@@ -211,7 +211,7 @@ import { TextInput } from '@xrift/world-components';
   id="my-input"
   value={inputValue}
   onSubmit={handleSubmit}
-  placeholder="テキストを入力..."
+  placeholder="Enter text..."
 >
   <mesh>
     <boxGeometry args={[1, 0.5, 0.1]} />
@@ -224,29 +224,29 @@ import { TextInput } from '@xrift/world-components';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `id` | `string` | - | 入力フィールドの一意なID（必須） |
-| `children` | `ReactNode` | - | 3Dオブジェクト（外観）（必須） |
-| `placeholder` | `string` | - | プレースホルダーテキスト |
-| `maxLength` | `number` | - | 最大文字数 |
-| `value` | `string` | - | 現在の値 |
-| `onSubmit` | `(value: string) => void` | - | 入力完了時のコールバック |
-| `interactionText` | `string` | `'クリックして入力'` | インタラクション時に表示するテキスト |
-| `disabled` | `boolean` | `false` | 入力を無効にするか |
+| `id` | `string` | - | Unique ID for the input field (Required) |
+| `children` | `ReactNode` | - | 3D object (Appearance) (Required) |
+| `placeholder` | `string` | - | Placeholder text |
+| `maxLength` | `number` | - | Maximum number of characters |
+| `value` | `string` | - | Current value |
+| `onSubmit` | `(value: string) => void` | - | Callback on input completion |
+| `interactionText` | `string` | `'Click to enter'` | Text to display on interaction |
+| `disabled` | `boolean` | `false` | Whether to disable input |
 
-#### 仕組み
+#### Mechanism
 
-`TextInput` コンポーネントは以下のアーキテクチャで動作します：
+The `TextInput` component operates with the following architecture:
 
-1. **TextInput**: children として渡された3Dオブジェクトをクリック可能な入力フィールドとして表示
-2. **オーバーレイ入力**: クリック時に2Dのテキスト入力UIがオーバーレイとして表示され、実際の入力を受け付けます
-3. **XRiftContext連携**: world-componentsはXRiftContext経由でオーバーレイ表示をリクエストします
+1. **TextInput**: Displays the 3D object passed as children as a clickable input field.
+2. **Overlay Input**: Upon clicking, a 2D text input UI is displayed as an overlay to accept actual input.
+3. **XRiftContext Integration**: world-components requests the overlay display via XRiftContext.
 
-:::tip[外観のカスタマイズ]
-`children` に任意の3Dオブジェクトを渡すことで、入力フィールドの外観を自由にカスタマイズできます。ボタン風のデザインや、ワールドの世界観に合わせた見た目を実現できます。
+:::tip[Customizing Appearance]
+By passing any 3D object to `children`, you can freely customize the appearance of the input field. You can achieve button-like designs or looks that match the world's atmosphere.
 :::
 
-:::note[関連するContext/Hook]
-プラットフォーム側では以下のAPIを使用してTextInputの動作を実装しています：
+:::note[Related Context/Hook]
+The platform side uses the following APIs to implement TextInput behavior:
 - `TextInputContext`
 - `useTextInputContext`
 - `TextInputContextValue`
@@ -257,7 +257,7 @@ import { TextInput } from '@xrift/world-components';
 
 ### TagBoard
 
-ユーザーが選択したタグをローカル/グローバルに扱い、ボードUI（TagSelector）と各ユーザー頭上へのタグ表示（TagDisplay）を提供するコンポーネントです。
+A component that handles tags selected by users locally/globally, providing a board UI (TagSelector) and tag display above each user's head (TagDisplay).
 
 ```tsx
 import { TagBoard } from '@xrift/world-components';
@@ -272,54 +272,54 @@ import { TagBoard } from '@xrift/world-components';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `tags` | `Tag[]` | デフォルトタグ一覧 | 表示・選択対象のタグ |
-| `columns` | `number` | `3` | 表示列数 |
-| `title` | `string` | `"タグ選択"` | タイトル文言 |
-| `instanceStateKey` | `string` | - | インスタンス状態のキー（必須、複数ボード設置時の識別用） |
-| `position` | `[number, number, number]` | `[0, 0, 0]` | ボードの位置 |
-| `rotation` | `[number, number, number]` | `[0, 0, 0]` | ボードの回転 |
-| `scale` | `number` | `1` | 全体スケール |
+| `tags` | `Tag[]` | Default tag list | Tags to display/select |
+| `columns` | `number` | `3` | Number of display columns |
+| `title` | `string` | `"Select Tag"` | Title text |
+| `instanceStateKey` | `string` | - | Instance state key (Required, for identification when placing multiple boards) |
+| `position` | `[number, number, number]` | `[0, 0, 0]` | Position of the board |
+| `rotation` | `[number, number, number]` | `[0, 0, 0]` | Rotation of the board |
+| `scale` | `number` | `1` | Overall scale |
 
-#### Tag 型定義
+#### Tag Type Definition
 
 ```typescript
 interface Tag {
-  id: string;      // タグの一意識別子
-  label: string;   // 表示ラベル
-  color: string;   // 色（HEX形式）
+  id: string;      // Unique identifier for the tag
+  label: string;   // Display label
+  color: string;   // Color (HEX format)
 }
 ```
 
-#### デフォルトタグ一覧
+#### Default Tag List
 
-`tags` プロパティを省略した場合、以下のタグが使用されます：
+If the `tags` property is omitted, the following tags are used:
 
 ```typescript
 [
-  { color: "#2ECC71", id: "want-talk", label: "話したい" },
-  { color: "#3498DB", id: "want-listen", label: "聞きたい" },
-  { color: "#95A5A6", id: "silent", label: "無言" },
-  { color: "#1ABC9C", id: "developer", label: "開発者" },
-  { color: "#2980B9", id: "student", label: "学生" },
-  { color: "#F1C40F", id: "beginner", label: "初心者" },
-  { color: "#9B59B6", id: "dont-know", label: "なんもわからん" },
-  { color: "#8BC34A", id: "working", label: "作業中" },
-  { color: "#BF7B41", id: "away", label: "離席中" },
-  { color: "#FF9800", id: "cat", label: "ねこ" },
+  { color: "#2ECC71", id: "want-talk", label: "Want to talk" },
+  { color: "#3498DB", id: "want-listen", label: "Want to listen" },
+  { color: "#95A5A6", id: "silent", label: "Silent" },
+  { color: "#1ABC9C", id: "developer", label: "Developer" },
+  { color: "#2980B9", id: "student", label: "Student" },
+  { color: "#F1C40F", id: "beginner", label: "Beginner" },
+  { color: "#9B59B6", id: "dont-know", label: "Don't know anything" },
+  { color: "#8BC34A", id: "working", label: "Working" },
+  { color: "#BF7B41", id: "away", label: "Away" },
+  { color: "#FF9800", id: "cat", label: "Cat" },
 ]
 ```
 
-#### 使用例
+#### Usage Example
 
-##### カスタムタグを使用
+##### Using Custom Tags
 
 ```tsx
 import { TagBoard, type Tag } from '@xrift/world-components';
 
 const customTags: Tag[] = [
-  { id: "frontend", label: "フロントエンド", color: "#61DAFB" },
-  { id: "backend", label: "バックエンド", color: "#68A063" },
-  { id: "design", label: "デザイン", color: "#FF6B6B" },
+  { id: "frontend", label: "Frontend", color: "#61DAFB" },
+  { id: "backend", label: "Backend", color: "#68A063" },
+  { id: "design", label: "Design", color: "#FF6B6B" },
   { id: "pm", label: "PM", color: "#9B59B6" },
 ];
 
@@ -328,7 +328,7 @@ export const MyWorld = () => {
     <TagBoard
       tags={customTags}
       columns={2}
-      title="あなたの役割は？"
+      title="What is your role?"
       instanceStateKey="role-tag-board"
       position={[0, 1.5, -3]}
       rotation={[0, 0, 0]}
@@ -338,22 +338,22 @@ export const MyWorld = () => {
 };
 ```
 
-:::tip[複数のTagBoardを設置する場合]
-`instanceStateKey` は同一ワールド内で一意である必要があります。複数の TagBoard を設置する場合は、それぞれ異なる `instanceStateKey` を指定してください。
+:::tip[Placing Multiple TagBoards]
+`instanceStateKey` must be unique within the same world. If placing multiple TagBoards, specify a different `instanceStateKey` for each.
 :::
 
-:::note[依存関係]
-- `UsersContext` が必要です（ユーザー情報の取得に使用）
-- 内部で `useInstanceState` フックを使用しています（タグ選択状態の同期）
+:::note[Dependencies]
+- `UsersContext` is required (used for retrieving user information).
+- Uses `useInstanceState` hook internally (synchronization of tag selection state).
 :::
 
 ---
 
-## フック
+## Hooks
 
 ### useInstanceState
 
-インスタンス内の全ユーザー間で状態を同期します。React の `useState` と同じインターフェースです。
+Synchronizes state across all users in the instance. It has the same interface as React's `useState`.
 
 ```tsx
 import { useInstanceState } from '@xrift/world-components';
@@ -363,28 +363,28 @@ function Counter() {
 
   return (
     <mesh onClick={() => setCount(count + 1)}>
-      {/* count は全ユーザーで同期される */}
+      {/* count is synchronized across all users */}
     </mesh>
   );
 }
 ```
 
-#### 引数
+#### Arguments
 
-| 引数 | Type | Description |
+| Argument | Type | Description |
 |-----|------|-------------|
-| `key` | `string` | 状態の一意な識別子 |
-| `initialValue` | `T` | 初期値 |
+| `key` | `string` | Unique identifier for the state |
+| `initialValue` | `T` | Initial value |
 
-#### 戻り値
+#### Return Value
 
-`[value: T, setValue: (newValue: T) => void]` - useState と同じ形式
+`[value: T, setValue: (newValue: T) => void]` - Same format as useState
 
 ---
 
 ### useScreenShareContext
 
-画面共有の状態を取得するフックです。
+A hook to retrieve the state of screen sharing.
 
 ```tsx
 import { useScreenShareContext } from '@xrift/world-components';
@@ -394,26 +394,26 @@ function MyComponent() {
 
   return (
     <button onClick={isSharing ? stopScreenShare : startScreenShare}>
-      {isSharing ? '共有を停止' : '共有を開始'}
+      {isSharing ? 'Stop Sharing' : 'Start Sharing'}
     </button>
   );
 }
 ```
 
-#### 戻り値
+#### Return Value
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `videoElement` | `HTMLVideoElement \| null` | 表示する映像のvideo要素 |
-| `isSharing` | `boolean` | 自分が共有中かどうか |
-| `startScreenShare` | `() => void` | 共有開始 |
-| `stopScreenShare` | `() => void` | 共有停止 |
+| `videoElement` | `HTMLVideoElement \| null` | Video element to display |
+| `isSharing` | `boolean` | Whether the user is sharing |
+| `startScreenShare` | `() => void` | Start sharing |
+| `stopScreenShare` | `() => void` | Stop sharing |
 
 ---
 
 ### useSpawnPoint
 
-プラットフォーム側がスポーン地点情報を取得するためのフックです。
+A hook for the platform side to retrieve spawn point information.
 
 ```tsx
 import { useSpawnPoint } from '@xrift/world-components';
@@ -424,22 +424,22 @@ function MyPlatform() {
 }
 ```
 
-#### 戻り値
+#### Return Value
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `position` | `[number, number, number]` | スポーン位置 |
-| `yaw` | `number` | スポーン時の向き（度数法） |
+| `position` | `[number, number, number]` | Spawn position |
+| `yaw` | `number` | Orientation at spawn (degrees) |
 
-:::note[使用先]
-このフックは xrift-frontend（プラットフォーム）側での使用を想定しています。ワールド開発者は `SpawnPoint` コンポーネントを使用してください。
+:::note[Usage]
+This hook is intended for use on the xrift-frontend (platform) side. World developers should use the `SpawnPoint` component.
 :::
 
 ---
 
 ### useUsers
 
-ワールドに参加しているユーザー情報と位置情報を取得するフックです。自分自身（ローカルユーザー）と他の参加者（リモートユーザー）の情報にアクセスできます。
+A hook to retrieve information and location of users participating in the world. You can access information about yourself (local user) and other participants (remote users).
 
 ```tsx
 import { useUsers } from '@xrift/world-components';
@@ -451,33 +451,33 @@ function ParticipantCount() {
 
   return (
     <div>
-      <p>参加者数: {totalCount}人</p>
+      <p>Participants: {totalCount}</p>
     </div>
   );
 }
 ```
 
-#### 戻り値
+#### Return Value
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `localUser` | `User \| null` | 自分自身のユーザー情報 |
-| `remoteUsers` | `User[]` | 他の参加者のユーザー情報の配列 |
-| `getMovement` | `(id: string) => PlayerMovement \| undefined` | 指定ユーザーの位置情報を取得 |
-| `getLocalMovement` | `() => PlayerMovement` | 自分の位置情報を取得 |
+| `localUser` | `User \| null` | Information about yourself |
+| `remoteUsers` | `User[]` | Array of information about other participants |
+| `getMovement` | `(id: string) => PlayerMovement \| undefined` | Retrieve location information of a specific user |
+| `getLocalMovement` | `() => PlayerMovement` | Retrieve your own location information |
 
-#### User 型
+#### User Type
 
 ```typescript
 interface User {
-  id: string;              // ユーザーID
-  displayName: string;     // 表示名
-  avatarUrl: string | null; // アバターアイコンURL
-  isGuest: boolean;        // ゲストかどうか
+  id: string;              // User ID
+  displayName: string;     // Display name
+  avatarUrl: string | null; // Avatar icon URL
+  isGuest: boolean;        // Whether the user is a guest
 }
 ```
 
-#### PlayerMovement 型
+#### PlayerMovement Type
 
 ```typescript
 interface PlayerMovement {
@@ -493,9 +493,9 @@ interface PlayerMovement {
 }
 ```
 
-#### useFrame 内での位置情報取得
+#### Retrieving Position in useFrame
 
-`getMovement()` と `getLocalMovement()` は `useFrame` 内で毎フレーム呼び出すことができます。これらの関数は再レンダリングを発生させずに最新の位置情報を取得できます。
+`getMovement()` and `getLocalMovement()` can be called every frame within `useFrame`. These functions allow retrieving the latest position information without triggering re-renders.
 
 ```tsx
 import { useUsers } from '@xrift/world-components';
@@ -511,7 +511,7 @@ function FollowCamera() {
     const movement = getLocalMovement();
     if (!groupRef.current) return;
 
-    // 自分の位置の少し上にオブジェクトを配置
+    // Place an object slightly above your position
     groupRef.current.position.set(
       movement.position.x,
       movement.position.y + 3,
@@ -527,9 +527,9 @@ function FollowCamera() {
 }
 ```
 
-#### ユースケース
+#### Use Cases
 
-##### ユーザーの頭上にHUDを表示
+##### Display HUD above User's Head
 
 ```tsx
 import { useUsers } from '@xrift/world-components';
@@ -545,7 +545,7 @@ function UserHUD({ user, getMovement }) {
     const movement = getMovement(user.id);
     if (!movement || !groupRef.current) return;
 
-    // ユーザーの頭の上に配置
+    // Place above the user's head
     groupRef.current.position.set(
       movement.position.x,
       movement.position.y + 2,
@@ -573,7 +573,7 @@ function UserHUDs() {
 }
 ```
 
-##### 近くにいるユーザーを検出
+##### Detect Nearby Users
 
 ```tsx
 import { useUsers } from '@xrift/world-components';
@@ -603,7 +603,7 @@ function ProximityDetector() {
       }
     });
 
-    // 配列の内容が変わった場合のみ更新
+    // Update only if the array content changes
     if (JSON.stringify(nearby) !== JSON.stringify(nearbyUsers)) {
       setNearbyUsers(nearby);
     }
@@ -613,7 +613,7 @@ function ProximityDetector() {
 }
 ```
 
-##### ユーザー間の距離を計算
+##### Calculate Distance Between Users
 
 ```tsx
 import { useUsers } from '@xrift/world-components';
@@ -646,10 +646,10 @@ function DistanceLine({ targetUser, getMovement, getLocalMovement }) {
 }
 ```
 
-:::tip[パフォーマンスのヒント]
-`getMovement()` と `getLocalMovement()` は `useFrame` 内で毎フレーム呼び出しても問題ありません。これらは内部的にキャッシュされた値を返すため、パフォーマンスへの影響は最小限です。
+:::tip[Performance Hint]
+`getMovement()` and `getLocalMovement()` are safe to call every frame within `useFrame`. They return internally cached values, so the performance impact is minimal.
 :::
 
-:::note[remoteUsers の更新タイミング]
-`remoteUsers` 配列はユーザーの参加/離脱時のみ更新されます。ユーザーの位置情報の変化では再レンダリングは発生しません。位置情報は常に `getMovement()` を使用して取得してください。
+:::note[remoteUsers Update Timing]
+The `remoteUsers` array is updated only when users join or leave. Changes in user positions do not trigger re-renders. Always use `getMovement()` to retrieve position information.
 :::

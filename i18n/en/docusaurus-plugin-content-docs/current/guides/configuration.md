@@ -2,18 +2,18 @@
 sidebar_position: 2
 ---
 
-# xrift.json 設定
+# xrift.json Configuration
 
-プロジェクトルートの `xrift.json` でワールドの設定を行います。
+Configure your world settings in `xrift.json` at the project root.
 
-## 設定例
+## Configuration Example
 
 ```json
 {
   "world": {
     "distDir": "./dist",
     "title": "My World",
-    "description": "サンプルワールドです",
+    "description": "This is a sample world",
     "thumbnailPath": "thumbnail.png",
     "buildCommand": "npm run build",
     "ignore": [
@@ -25,23 +25,23 @@ sidebar_position: 2
 }
 ```
 
-## 設定項目
+## Configuration Items
 
-| フィールド | 型 | 説明 |
+| Field | Type | Description |
 |-----------|-----|------|
-| `distDir` | string | アップロードするビルド成果物のディレクトリ |
-| `title` | string | ワールドのタイトル（未設定の場合、アップロード時に入力） |
-| `description` | string | ワールドの説明（未設定の場合、アップロード時に入力） |
-| `thumbnailPath` | string | サムネイル画像のパス（`distDir` からの相対パス） |
-| `buildCommand` | string | アップロード前に実行するビルドコマンド |
-| `ignore` | string[] | アップロードから除外するファイルの glob パターン |
-| `physics` | object | ワールドの物理設定 |
+| `distDir` | string | Directory of build artifacts to upload |
+| `title` | string | World title (if not set, input required at upload) |
+| `description` | string | World description (if not set, input required at upload) |
+| `thumbnailPath` | string | Path to thumbnail image (relative to `distDir`) |
+| `buildCommand` | string | Build command to execute before upload |
+| `ignore` | string[] | Glob patterns of files to exclude from upload |
+| `physics` | object | World physics settings |
 
-## 各項目の詳細
+## Details of Each Item
 
 ### distDir
 
-アップロード対象のディレクトリを指定します。
+Specifies the directory to upload.
 
 ```json
 {
@@ -53,20 +53,20 @@ sidebar_position: 2
 
 ### title / description
 
-ワールドのタイトルと説明を設定します。これらはオプショナルですが、設定しておくと `xrift upload world` 実行時のプロンプトでデフォルト値として使用されます。
+Sets the world title and description. These are optional, but if set, they will be used as default values in the prompt when running `xrift upload world`.
 
 ```json
 {
   "world": {
     "title": "My Awesome World",
-    "description": "インタラクティブな3Dワールドです"
+    "description": "An interactive 3D world"
   }
 }
 ```
 
 ### thumbnailPath
 
-ワールドのサムネイル画像を指定します。`distDir` からの相対パスで指定します。
+Specifies the thumbnail image for the world. Specify as a relative path from `distDir`.
 
 ```json
 {
@@ -77,13 +77,13 @@ sidebar_position: 2
 }
 ```
 
-この場合、`dist/thumbnail.png` がサムネイルとして使用されます。
+In this case, `dist/thumbnail.png` will be used as the thumbnail.
 
-**推奨サイズ**: 1280x720 ピクセル
+**Recommended Size**: 1280x720 pixels
 
 ### buildCommand
 
-`xrift upload world` 実行時に、アップロード前に自動実行されるコマンドです。
+A command that is automatically executed before uploading when running `xrift upload world`.
 
 ```json
 {
@@ -93,11 +93,11 @@ sidebar_position: 2
 }
 ```
 
-これを設定しておくと、手動でビルドする必要がなくなります。
+Setting this eliminates the need to build manually.
 
 ### ignore
 
-アップロードから除外するファイルを glob パターンで指定します。
+Specifies files to exclude from upload using glob patterns.
 
 ```json
 {
@@ -113,14 +113,14 @@ sidebar_position: 2
 
 ### physics
 
-ワールドの物理動作をカスタマイズできます。
+You can customize the physics behavior of the world.
 
-| 設定 | 型 | デフォルト | 説明 |
+| Setting | Type | Default | Description |
 |------|-----|---------|------|
-| `gravity` | number | 9.81 | 重力の強さ（正の値、地球=9.81、月=1.62） |
-| `allowInfiniteJump` | boolean | true | 無限ジャンプを許可するか |
+| `gravity` | number | 9.81 | Strength of gravity (Positive value, Earth=9.81, Moon=1.62) |
+| `allowInfiniteJump` | boolean | true | Whether to allow infinite jumping |
 
-#### 基本設定
+#### Basic Settings
 
 ```json
 {
@@ -133,7 +133,7 @@ sidebar_position: 2
 }
 ```
 
-#### アスレチックワールド（無限ジャンプ禁止）
+#### Athletic World (No Infinite Jump)
 
 ```json
 {
@@ -145,7 +145,7 @@ sidebar_position: 2
 }
 ```
 
-#### 低重力ワールド（月の重力）
+#### Low Gravity World (Moon Gravity)
 
 ```json
 {
@@ -157,7 +157,7 @@ sidebar_position: 2
 }
 ```
 
-#### 高重力ワールド（木星の重力）
+#### High Gravity World (Jupiter Gravity)
 
 ```json
 {

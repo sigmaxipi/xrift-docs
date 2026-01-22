@@ -2,31 +2,31 @@
 sidebar_position: 1
 ---
 
-# インストール
+# Installation
 
-XRift を使い始めるには、まず CLI をインストールします。
+To start using XRift, first install the CLI.
 
-## 前提条件
+## Prerequisites
 
-- Node.js 18.0.0 以上
+- Node.js 18.0.0 or higher
 - npm
 
-## CLI のインストール
+## Installing the CLI
 
 ```bash
 npm install -g @xrift/cli
 ```
 
-## インストールの確認
+## Verifying Installation
 
-インストールが成功したか確認するには、以下のコマンドを実行します：
+To verify if the installation was successful, run the following command:
 
 ```bash
 xrift --version
 ```
 
-バージョン番号が表示されれば、インストールは成功です。
+If the version number is displayed, the installation was successful.
 
-## 次のステップ
+## Next Steps
 
-インストールが完了したら、[クイックスタート](/getting-started/quick-start) に進んで最初のワールドを作成しましょう。
+Once installation is complete, proceed to [Quick Start](/getting-started/quick-start) to create your first world.

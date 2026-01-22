@@ -2,43 +2,43 @@
 sidebar_position: 2
 ---
 
-# クイックスタート
+# Quick Start
 
-XRift CLI を使ってワールドプロジェクトを作成し、開発サーバーを起動するまでの手順です。
+Here are the steps to create a world project using XRift CLI and start the development server.
 
-## 新しいプロジェクトの作成
+## Creating a New Project
 
 ```bash
 xrift create my-world
 ```
 
-対話形式でプロジェクト名などを設定します。`-y` オプションで対話をスキップできます。
+You will configure the project name and other settings interactively. You can skip the interaction with the `-y` option.
 
-## プロジェクト構成
+## Project Structure
 
-作成されたプロジェクトには、すでにサンプルワールドが含まれています：
+The created project already contains a sample world:
 
 ```
 my-world/
 ├── src/
-│   ├── World.tsx        # メインのワールドコンポーネント
-│   └── components/      # サンプルコンポーネント
-├── public/              # アセット（モデル、テクスチャなど）
+│   ├── World.tsx        # Main world component
+│   └── components/      # Sample components
+├── public/              # Assets (models, textures, etc.)
 ├── package.json
 └── vite.config.ts
 ```
 
-## 開発サーバーの起動
+## Starting the Development Server
 
 ```bash
 cd my-world
 npm run dev
 ```
 
-ブラウザで `http://localhost:5173` を開くと、サンプルワールドが表示されます。
+Open `http://localhost:5173` in your browser to see the sample world.
 
-## 次のステップ
+## Next Steps
 
-- [最初のワールドを作成する](/guides/create-first-world) でカスタマイズ方法を学ぶ
-- [World Components](/world-components/components/) でコンポーネントの使い方を学ぶ
-- [CLI コマンドリファレンス](/cli/commands) で利用可能なコマンドを確認
+- Learn how to customize in [Create Your First World](/guides/create-first-world)
+- Learn how to use components in [World Components](/world-components/components/)
+- Check available commands in [CLI Command Reference](/cli/commands)

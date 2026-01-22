@@ -16,11 +16,11 @@
     "description": "The label of footer link with label=Getting Started linking to /getting-started/installation"
   },
   "link.item.label.ワールド開発": {
-    "message": "ワールド開発",
+    "message": "World Development",
     "description": "The label of footer link with label=ワールド開発 linking to /world-components/components/"
   },
   "link.item.label.アイテム開発": {
-    "message": "アイテム開発",
+    "message": "Item Development",
     "description": "The label of footer link with label=アイテム開発 linking to /item/overview"
   },
   "link.item.label.xrift-cli": {
@@ -32,7 +32,7 @@
     "description": "The label of footer link with label=xrift-world-components linking to https://github.com/WebXR-JP/xrift-world-components"
   },
   "link.item.label.ログイン": {
-    "message": "ログイン",
+    "message": "Login",
     "description": "The label of footer link with label=ログイン linking to https://xrift.net/"
   },
   "link.item.label.Discord": {

@@ -8,11 +8,11 @@
     "description": "The label for category 'Getting Started' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.ワールド開発": {
-    "message": "ワールド開発",
+    "message": "World Development",
     "description": "The label for category 'ワールド開発' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.アイテム開発": {
-    "message": "アイテム開発",
+    "message": "Item Development",
     "description": "The label for category 'アイテム開発' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.CLI (xrift-cli)": {

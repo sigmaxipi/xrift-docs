@@ -2,25 +2,25 @@
 sidebar_position: 2
 ---
 
-# コマンドリファレンス
+# Command Reference
 
-xrift-cli で利用可能なコマンドの一覧です。
+A list of commands available in xrift-cli.
 
-## 認証コマンド
+## Authentication Commands
 
 ### xrift login
 
-ブラウザベースの認証を行います。
+Performs browser-based authentication.
 
 ```bash
 xrift login
 ```
 
-ブラウザが開き、XRift アカウントでログインできます。
+A browser will open, allowing you to log in with your XRift account.
 
 ### xrift logout
 
-現在のセッションからサインアウトします。
+Signs out from the current session.
 
 ```bash
 xrift logout
@@ -28,63 +28,63 @@ xrift logout
 
 ### xrift whoami
 
-現在ログインしているユーザー情報を表示します。
+Displays information about the currently logged-in user.
 
 ```bash
 xrift whoami
 ```
 
-## プロジェクト管理
+## Project Management
 
 ### xrift create
 
-新しいワールドプロジェクトを作成します。
+Creates a new world project.
 
 ```bash
 xrift create [name] [options]
 ```
 
-### オプション
+### Options
 
-| オプション | 説明 |
+| Option | Description |
 |-----------|------|
-| `--here` | 現在のディレクトリにプロジェクトを作成 |
-| `--template <name>` | 使用するテンプレートを指定 |
-| `--skip-install` | 依存関係のインストールをスキップ |
-| `-y, --no-interactive` | 対話モードをスキップ（デフォルト値を使用） |
+| `--here` | Create the project in the current directory |
+| `--template <name>` | Specify the template to use |
+| `--skip-install` | Skip installation of dependencies |
+| `-y, --no-interactive` | Skip interactive mode (use default values) |
 
-### 例
+### Examples
 
 ```bash
-# 対話形式でプロジェクトを作成
+# Create a project interactively
 xrift create my-world
 
-# 対話なしでプロジェクトを作成
+# Create a project without interaction
 xrift create my-world -y
 
-# 現在のディレクトリに作成
+# Create in the current directory
 xrift create --here
 ```
 
-## デプロイ
+## Deployment
 
 ### xrift upload world
 
-ワールドを XRift プラットフォームにアップロードします。
+Uploads the world to the XRift platform.
 
 ```bash
 xrift upload world
 ```
 
-アップロード前に、`xrift.json` で定義されたビルドスクリプトが自動的に実行されます。新規ワールドの場合は、タイトルや説明などのメタデータの入力を求められます。
+Before uploading, the build script defined in `xrift.json` runs automatically. For new worlds, you will be prompted to enter metadata such as title and description.
 
-アップロード後、コードの審査が自動的に行われます（通常数分で完了します）。審査に通過するとワールドが公開されます。審査に落ちた場合、ワールドは公開されず、最後に審査を通過したバージョンが公開された状態のままとなります。
+After uploading, a code review is performed automatically (usually completed in a few minutes). Once the review is passed, the world will be published. If the review fails, the world will not be published, and the version that last passed the review will remain published.
 
-## ユーティリティ
+## Utilities
 
 ### --version, -v
 
-インストールされているバージョンを表示します。
+Displays the installed version.
 
 ```bash
 xrift --version
@@ -93,7 +93,7 @@ xrift -v
 
 ### --help, -h
 
-ヘルプ情報を表示します。
+Displays help information.
 
 ```bash
 xrift --help
@@ -102,7 +102,7 @@ xrift -h
 
 ### --verbose
 
-詳細なデバッグ出力を表示します。
+Displays detailed debug output.
 
 ```bash
 xrift --verbose <command>
